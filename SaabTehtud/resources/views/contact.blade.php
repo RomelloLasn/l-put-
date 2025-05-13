@@ -69,6 +69,12 @@
                 </div>
             </div>
 
+            <!-- Success Message -->
+@if(session('success'))
+<div class="bg-green-500 text-white p-4 rounded-lg mb-6">
+    {{ session('success') }}
+</div>
+@endif
             <!-- Contact Form -->
             <div class="bg-gray-900 text-white shadow-md rounded-lg p-6">
                 <h2 class="text-3xl font-bold mb-4 text-yellow-400">Send Us a Message</h2>
@@ -128,14 +134,15 @@
 
     <!-- Leaflet Map Script -->
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13); // Random coordinates for now
+        var map = L.map('map').setView([59.437, 24.7536], 13); // Coordinates for Tallinn, Estonia
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
         }).addTo(map);
-        L.marker([51.505, -0.09]).addTo(map) // Random marker
+        L.marker([59.437, 24.7536]).addTo(map) // Marker for Tallinn
             .bindPopup('Saabtehtud OÜ Location')
             .openPopup();
     </script>
 </body>
+
 </html>

@@ -8,27 +8,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white">
+    
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center" style="background-image: url('{{ asset('images/pkatus2.jpg') }}');">
+    <!-- Black Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    
     <!-- Header -->
-    <header class="bg-black py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <div class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.png') }}" alt="SAABTEHTUD OÜ" class="h-10 w-10">
-                <span class="text-xl font-bold">SaabTehtud OÜ</span>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium">
-                <a href="/" class="hover:text-yellow-400 transition duration-300">Home</a>
-                <a href="{{ route('services') }}" class="hover:text-yellow-400 transition duration-300">Services</a>
-                <a href="{{ route('contact') }}" class="hover:text-yellow-400 transition duration-300">Contact Us</a>
-            </nav>
-            <a href="{{ route('contact') }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full transition duration-300">
-                Contact Us
-            </a>
+    <header class="relative z-10 container mx-auto flex justify-between items-center px-4 py-4">
+        <div class="flex items-center space-x-3">
+            <img src="{{ asset('images/logo.png') }}" alt="SAABTEHTUD OÜ" class="h-10 w-10">
+            <span class="text-xl font-bold text-white">SaabTehtud OÜ</span>
         </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+            <a href="/" class="hover:text-yellow-400 text-white transition duration-300">Avaleht</a>
+            <a href="{{ route('services') }}" class="hover:text-yellow-400 text-white transition duration-300">Teenused</a>
+            <a href="{{ route('contact') }}" class="hover:text-yellow-400 text-white transition duration-300">Kontakt</a>
+        </nav>
+        <a href="{{ route('contact') }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full transition duration-300">
+            Võta ühendust
+        </a>
     </header>
 
+    <!-- Hero Content -->
+    <div class="relative z-10 container mx-auto text-center px-4 py-40">
+        <h1 class="text-4xl font-bold text-yellow-400 mb-4">Teenused</h1>
+        <p class="text-white mb-8">
+            Pakume laia valikut katuse- ja plekitöid, mis on professionaalsed, ausad ja alati kokkulepitud ajal tehtud.
+        </p>
+        <div class="flex justify-center space-x-4">
+            <a href="{{ route('contact') }}" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-full transition duration-300">
+                Võta ühendust
+            </a>
+        </div>
+    </div>
+</section>
     <!-- Main Section -->
     <main class="container mx-auto py-12 px-4">
-        <h1 class="text-4xl font-bold text-yellow-400 mb-8 text-center">Teenused</h1>
+        
 
         <!-- Service Section -->
         <div class="space-y-12">
