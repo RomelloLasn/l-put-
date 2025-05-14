@@ -4,27 +4,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
-use Illuminate\Support\Facades\View;
-
-if (!View::exists('emails.contact')) {
-    return 'The view [emails.contact] does not exist.';
-}
 
 class ContactController extends Controller
 {
     public function submit(Request $request)
     {
+        // Validate the form data
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'message' => 'required|string',
         ]);
 
+        // Collect the form data
         $data = $request->only('name', 'email', 'phone', 'message');
 
-        // Send email using the Mailable class
-        Mail::to('saabtehtud@online.ee')->send(new ContactFormMail($data));
+        try {
+            // Send the email
+            Mail::to('romellolasn2@gmail.com')->send(new ContactFormMail($data));
+            \Log::info('Email sent successfully.');
 
-        return back()->with('success', 'Your message has been sent successfully!');
+            // Return success message
+            return back()->with('success', 'Your message has been sent successfully!');
+        } catch (\Exception $e) {
+            // Log the error and return a failure message
+            \Log::error('Email failed to send: ' . $e->getMessage());
+            return back()->with('error', 'Failed to send your message. Please try again later.');
+        }
     }
 }
