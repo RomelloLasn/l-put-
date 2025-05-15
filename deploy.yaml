@@ -1,0 +1,32 @@
+import:
+  - recipe/laravel.php
+
+config:
+  repository: 'https://github.com/RomelloLasn/l-put-'
+  keep_releases: 2
+  writable_mode: chmod  # <-- important line
+
+hosts:
+  stage:
+    hostname: 'tak22lasn.itmajakas.ee'
+    http_user: www-data
+    remote_user: virt118441
+    deploy_path: '/data01/virt118441/domeenid/www.tak22lasn.itmajakas.ee/saabtehtud'
+
+tasks:
+  opcache:clear:
+    - run: killall php84-cgi || true
+
+  deploy:
+    - 'deploy:prepare'
+    - 'deploy:vendors'
+    - 'artisan:storage:link'
+    - 'artisan:optimize:clear'
+    # - 'artisan:optimize'
+    - 'deploy:publish'
+
+after:
+  deploy:failed: deploy:unlock
+
+before:
+  deploy:success: opcache:clear
