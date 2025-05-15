@@ -6,14 +6,13 @@ config:
   keep_releases: 2
   writable_mode: chmod
   writable_use_sudo: false
-  
 
 hosts:
   stage:
     hostname: 'tak22lasn.itmajakas.ee'
     http_user: www-data   # correct web server user here
     remote_user: virt118441
-    deploy_path: '~/domeenid/www.tak22lasn.itmajakas.ee/hajusrak'
+    deploy_path: '/data01/virt118441/domeenid/www.tak22lasn.itmajakas.ee/saabtehtud'  # Updated path
 
 tasks:
   opcache:clear:
